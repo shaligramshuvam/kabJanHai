@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time To Go</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <!--BreakHours Link Starts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--BreakTime Link Ends-->
+
+
+</head>
+
+<body class="body">
+    <!--Background Img Start-->
+    <div class="intro">
+        <canvas id="spiders" class="hidden-xs"></canvas>
+        <article class="custom-post">
+            <div>
+                <!-- <form> -->
+                <div class="container-fluid">
+                    <div style="border: 2px solid red" class="p-xl-5" id="MainContainer">
+                        <div class="col my-3">
+                            In Time: <input type="time" name="Time" id="inTime" class="input-1"
+                                data-placeholder=""><br><br>
+                        </div>
+                        <!-- <div class="input-box">
+                            <label class="input-label">In Time</label>
+                            <input type="time" class="input-1" name="Time" onfocus="setFocus(true)" id="inTime" onblur="setFocus(false)" data-placeholder="" />
+                        </div> -->
+                        <div class="timepicker" id="timepicker-popup-wrapper-modal_XPQS">
+                            <div class="top">
+                                <span class="h">10</span>:<span class="m">15</span>
+                            </div>
+                            <div class="circle">
+                            </div>
+                            <div class="actions">
+                                <div class="action cancel">Cancel</div>
+                                <div class="action ok">OK</div>
+                            </div>
+                        </div>
+                        <div class="col" id="breakTimeDiv">
+                            <div class="input-box">
+                                <label class="input-label">Break Hours</label>
+                                <input type="number" class="input-1 hour" id="breakHours" name="breakHours"
+                                    onfocus="setFocus(true)" onblur="setFocus(false)" required />
+                            </div>
+                            <br><br>
+                            <div class="input-box">
+                                <label class="input-label">Break Minutes</label>
+                                <input type="number" class="input-1 hour" id="breakMinutes" name="breakMinutes"
+                                    onfocus="setFocus(true)" onblur="setFocus(false)" required />
+                            </div>
+                            <!-- Hours: <input type="number" id="breakHours" name="breakHours" class="hour"
+                                data-placeholder="Break Hours" required><br> -->
+
+                            <!-- Minutes: <input type="number" id="breakMinutes" name="breakMinutes"
+                                data-placeholder="Break Minutes" required><br><br><br> -->
+
+                                <div class="col d-flex align-content-center justify-content-center my-5">
+                                    <button type="submit" class="btn btn-success" id="getTime" onclick="GetTime()">Get
+                                        Time</button>
+                                </div>
+                                <div id="toGetOutTime"></div>
+                            </div>
+                        </div>
+                    <!-- </form> -->
+                </div>
+
+        </article>
+        <!-- <div class="moving-clouds" style="background-image: url('http://demos.creative-tim.com/paper-kit-2/assets/img/clouds.png'); "> </div> -->
+    </div>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+<!--jQuery Link-->
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script> -->
+
+<script src="js/script2.js"></script>
+
+
+
+</html>
