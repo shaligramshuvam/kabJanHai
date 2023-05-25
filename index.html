@@ -16,18 +16,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--BreakTime Link Ends-->
-
-
 </head>
 
 <body class="body">
     <!--Background Img Start-->
     <div class="intro">
         <canvas id="spiders" class="hidden-xs"></canvas>
-        <article class="custom-post">
+        <article class="custom-post" >
             <div>
                 <!-- <form> -->
-                <div class="container-fluid">
+                <div class="container-fluid" id="post">
                     <div style="border: 2px solid red" class="p-xl-5" id="MainContainer">
                         <div class="col my-3">
                             In Time: <input type="time" name="Time" id="inTime" class="input-1"
@@ -60,23 +58,19 @@
                                 <input type="number" class="input-1 hour" id="breakMinutes" name="breakMinutes"
                                     onfocus="setFocus(true)" onblur="setFocus(false)" required />
                             </div>
-                            <!-- Hours: <input type="number" id="breakHours" name="breakHours" class="hour"
-                                data-placeholder="Break Hours" required><br> -->
-
-                            <!-- Minutes: <input type="number" id="breakMinutes" name="breakMinutes"
-                                data-placeholder="Break Minutes" required><br><br><br> -->
-
-                                <div class="col d-flex align-content-center justify-content-center my-5">
-                                    <button type="submit" class="btn btn-success" id="getTime" onclick="GetTime()">Get
-                                        Time</button>
-                                </div>
-                                <div id="toGetOutTime"></div>
+                            <div class="col d-flex align-content-center justify-content-center my-5">
+                                <button type="submit" class="btn btn-success" id="getTime" onclick="GetTime()">Get
+                                    Time</button>
                             </div>
+                            <div id="toGetOutTime"></div>
+                            
                         </div>
+                    </div>
                     <!-- </form> -->
                 </div>
-
+                <canvas id="showTime"></canvas>
         </article>
+        
         <!-- <div class="moving-clouds" style="background-image: url('http://demos.creative-tim.com/paper-kit-2/assets/img/clouds.png'); "> </div> -->
     </div>
 

@@ -1,30 +1,30 @@
 let inHours = document.getElementById("inTime");
 
+
+
+//To Get Time on click
+
 function GetTime() {
     console.log("Hiii...");
 
     //In Time:---
     let [inHrs, inMinutes] = inHours.value.split(":")
     console.log(inHours);
-    // console.log(sliceHours);
     console.log(inHrs);
-    let inHrsInMinutes = parseInt(inHrs) * 60
-    let inTotalMinutes = inHrsInMinutes + parseInt(inMinutes)
-    console.log(inHrsInMinutes)
     console.log(inMinutes);
+    let inHrsInMinutes = parseInt(inHrs) * 60 //Hrs in minutes
+    let inTotalMinutes = inHrsInMinutes + parseInt(inMinutes) //Total In-Minutes 
+    console.log(inHrsInMinutes)
     console.log("inTotalMinutes : " + inTotalMinutes);
-    console.log(inHours, typeof inHours)
 
-    /*--------------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------Total Time To work in Minutes------------------------------------------------------*/
 
-    //Total Time To work
     let totalHrsToWorkInMinutes = (8 * 60)
     let totaMinutesToWork = 30
     let totalTimeToWork = totalHrsToWorkInMinutes + totaMinutesToWork
     console.log("totalTimeToWork : " + totalTimeToWork);
 
-    /*--------------------------------------------------------------------------------------------------*/
-    //Break Time:
+    /*--------------------------------------------------Break Time:------------------------------------------------*/
 
     let breakHrs = document.getElementById("breakHours").value;
     console.log(breakHrs)
@@ -33,65 +33,73 @@ function GetTime() {
     console.log("breakHoursInMinute : " + breakHoursInMinute);
     let breakMinutes = document.getElementById("breakMinutes").value;
     console.log(breakMinutes);
-    let totalBreakHoursInMinutes = parseInt(breakHoursInMinute) + parseInt(breakMinutes)
-    console.log("totalBreakHoursInMinutes : " + totalBreakHoursInMinutes);
-    // let breakHours = totalBreakHoursInMinutes / 60;
-    // let breakMinute = totalBreakHoursInMinutes % 60;
-    // console.log(breakHours);
-    // console.log(breakMinute);
+    let totalBreakTimeInMinutes = parseInt(breakHoursInMinute) + parseInt(breakMinutes)
+    console.log("totalBreakHoursInMinutes : " + totalBreakTimeInMinutes);
 
-    /*--------------------------------------------------------------------------------------------------*/
+    /*-------------------------------------------Out Time In-Minutes-------------------------------------------------------*/
 
-    console.log("OutTime : " + totalBreakHoursInMinutes + inTotalMinutes);
-
-    let outExpectedHrs = totalBreakHoursInMinutes + inTotalMinutes + totalTimeToWork
+    console.log("OutTime : " + (totalBreakTimeInMinutes + inTotalMinutes));
+    let outExpectedHrs = parseInt(totalBreakTimeInMinutes) + parseInt(inTotalMinutes) + parseInt(totalTimeToWork);
+    console.log("outExpectedHrs " + outExpectedHrs);
     let outHrs = outExpectedHrs / 60;
     let outMinutes = outExpectedHrs % 60;
 
-    console.log("outHrs : " + parseInt(outHrs));
-    console.log("outMinutes : " + (outMinutes));
+    if (outHrs > 24) {
+        outHrsMain = parseInt(outHrs - 24);
+    }
+    else {
+        outHrsMain = outHrs;
+    }
+    console.log("outHrsMain " + outHrsMain);
+    console.log("outMinutes : " + parseInt(outMinutes));
 
-    //     console.log("outHrs : " + (outHrs + 8));
-    //     console.log("outMinutes : " + (outMinutes+30));
+    // Output.innerHTML = outHrsMain + ":" + outMinutes
 
-    return outHrs, outMinutes;
 
+    //Output JS
+
+    array = [];
+    var outHrsString = parseInt(outHrsMain).toString();
+    var outMinutesString = parseInt(outMinutes).toString();
+    chars = outHrsString + ":" + outMinutesString;
+    console.log(chars);
+    // char = value.trim --> value ko trim krne kai lyea
+    for (var i = chars.length - 1; i >= 0; i--) {
+        var char = chars[i];
+        var pos = chars.length - i;
+        textToImage(char, pos, chars.length);
+    }
+    document.getElementById('post').style.display = 'none';
+    document.getElementById('showTime').style.display = 'block';
 }
 
-
+document.getElementById('post').style.display = 'block'
 //Label Animation
 
-$('input').each(function () {
-    var labelText = $(this).attr('data-placeholder'), // Get input placeholder value
-        labelFor = $(this).attr('name'); // Get input name value
+// $('input').each(function () {
+//     var labelText = $(this).attr('data-placeholder'), // Get input placeholder value
+//         labelFor = $(this).attr('name'); // Get input name value
+// });
 
-    // Wrap the input in a div and label
-    // $(this)
-    //     .wrap('<div class="input-wrap"></div>')
-    //     .before('<label for="' + labelFor + '">' + labelText + '</label>');
-});
+// $('input').focus(function () {
+//     var inputName = $(this).attr('name');
+//     $('label[for="' + inputName + '"]').addClass('active');
+// });
 
-$('input').focus(function () {
-    var inputName = $(this).attr('name');
-    $('label[for="' + inputName + '"]').addClass('active');
-});
-
-$('input').blur(function () {
-    if ($(this).val() != '') {
-        $('label.active').addClass('hidden').removeClass('active');
-    } else {
-        $('label.active').removeClass('hidden active');
-    }
-});
+// $('input').blur(function () {
+//     if ($(this).val() != '') {
+//         $('label.active').addClass('hidden').removeClass('active');
+//     } else {
+//         $('label.active').removeClass('hidden active');
+//     }
+// });
 
 /*BackGroung Animation Start*/
-
-
 jQuery.noConflict();
 (function ($) {
     $(function () {
         $(function () {
-            var width, height, div, ctx, points, target, animateHeader = true;
+            let width, height, div, ctx, points, target, animateHeader = true;
             // Main
             initHeader();
             initAnimation();
@@ -100,13 +108,13 @@ jQuery.noConflict();
                 width = window.innerWidth;
                 height = window.innerHeight;
                 target = {
-                    x: width / 2,
+                    x: width / 2,   
                     y: height / 3
                 };
-                canvas = document.getElementById('spiders');
-                canvas.width = width;
-                canvas.height = height;
-                ctx = canvas.getContext('2d');
+                spiderCanvas = document.getElementById('spiders');
+                spiderCanvas.width = width;
+                spiderCanvas.height = height;
+                ctx = spiderCanvas.getContext('2d');
                 // create points
                 points = [];
                 for (var x = 0; x < width; x = x + width / 20) {
@@ -189,8 +197,8 @@ jQuery.noConflict();
             function resize() {
                 width = window.innerWidth;
                 height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
+                // spiderCanvas.width = width;
+                // spiderCanvas.height = height;
             }
 
             // animation
@@ -237,7 +245,7 @@ jQuery.noConflict();
                 });
             }
 
-            // Canvas manipulation
+            // spiderCanvas manipulation
             function drawLines(p) {
                 if (!p.active) return;
                 for (var i in p.closest) {
@@ -374,19 +382,22 @@ function timepicker() {
 }
 timepicker();
 
-
+// window.onload() = () => {
+//     
+// }
 //New clock JS
-
-
-document.getElementById("timepicker-popup-wrapper-modal_XPQS").style.display = "none";
-
 var btn = document.getElementById("inTime");
+console.log(btn)
+document.querySelector('#inTime').addEventListener('click', () => {
+    console.log('hi')
+})
 
 btn.onclick = function () {
-    // document.getElementById("MainContainer").style.display = "none";
     document.getElementById("timepicker-popup-wrapper-modal_XPQS").style.display = "block";
     document.getElementById("breakTimeDiv").style.display = "none";
+    console.log('hi')
 }
+document.getElementById("timepicker-popup-wrapper-modal_XPQS").style.display = "none";
 
 
 
@@ -409,7 +420,134 @@ function setFocus(on) {
     }
 }
 
-//Button Js
+
+var showTimeCanvas = document.getElementById('showTime');
+console.log(showTimeCanvas)
+var input = document.getElementById('input');
+let ctx = showTimeCanvas.getContext('2d');
+var array = [];
+var chars = '';
+//
+// window.onload = function () {
+	var main = document.getElementById('page-main');
+	var temp = document.createElement('canvas');
+    showTimeCanvas.style.display = 'none';
+
+	var buffer = temp.getContext('2d');
+	var fill = new ImageData(1, 1);
+	//
+	showTimeCanvas.width = window.innerWidth;
+	showTimeCanvas.height = window.innerHeight;
+	var center = { x: showTimeCanvas.width * 0.5, y: showTimeCanvas.height * 0.5 };
+	ctx.fillStyle = '#000';
+	ctx.fillRect(0, 0, showTimeCanvas.width, showTimeCanvas.height);
+	ctx.globalAlpha = 0.6;
+	//
+	(function loop() {
+		update();
+		render();
+		requestAnimationFrame(loop);
+	})();
+	//
+	function update() {
+		//
+		array.forEach(function (point) {
+			point.update();
+		});
+	}
 
 
-//OutputCss
+	//
+	function render() {
+		ctx.fillRect(0, 0, showTimeCanvas.width, showTimeCanvas.height);
+
+		//
+		array.forEach(function (point) {
+			point.render(ctx);
+		});
+	}
+
+	function handleSubmit(){
+		array = [];
+		chars = input.value.trim();
+		// char = value.trim --> value ko trim krne kai lyea
+		for (var i = chars.length - 1; i >= 0; i--) {
+			var char = chars[i];
+			var pos = chars.length - i;
+			textToImage(char, pos, chars.length);
+		}
+	}
+	
+	//
+	function textToImage(key, pos, total) {
+		buffer.clearRect(0, 0, 40, 40);
+		buffer.font = '32px Arial';
+		buffer.fillStyle = '#000';
+		buffer.fillText(key, 8, 32);
+		var text = buffer.getImageData(0, 0, 40, 40);
+		// var width = buffer.measureText(key);
+		dataToArray(text, pos, total);
+	}
+	//
+	function dataToArray(text, pos, total) {
+		var temp = { x: center.x - 32 - (pos * 92) + (total * 48), y: center.y }
+		for (var i = 0; i < text.data.length; i += 4) {
+			if (text.data[i + 3] > 0) {
+				var x = (i >> 2) % text.width;
+				var y = (i >> 2) / text.width;
+				var point = new Point({ x: (x << 2) + temp.x, y: (y << 2) + temp.y });
+				array.push(point);
+				// break;
+			}
+		}
+	}
+	function positionFromRad(rad, length, base) {
+		var result = { x: length * Math.cos(rad) + base.x, y: length * Math.sin(rad) + base.y };
+		return result;
+	}
+	//
+	function Point(base) {
+		this.base = base;
+		this.chance1 = Math.random() * 0.06 - 0.03;
+		this.chance2 = Math.random() * 0.2 - 0.1;
+		this.length1 = Math.random() * 20 + 40;
+		this.length2 = Math.random() * 10 + 20;
+		this.speed1 = Math.random() * 0.5 + 1;
+		this.speed2 = Math.random() * 0.1 + 0.5;
+		this.dist1 = Math.random() * 4 + 8;
+		this.dist2 = Math.random() * 4 + 6;
+		this.min1 = Math.random() * -this.dist1;
+		this.min2 = Math.random() * -this.dist2;
+		this.rad1 = Math.random() * Math.PI * 2 + Math.PI * 2;
+		this.rad2 = Math.random() * Math.PI * 2 + Math.PI * 2;
+		var temp = positionFromRad(this.rad1, this.length1, this.base);
+		this.current = positionFromRad(this.rad2, this.length2, temp);
+		//
+		this.update = function(base) {
+			this.length1 += this.dist1;
+			this.length2 += this.dist2;
+			this.dist1 -= this.dist1 < this.min1 ? 0 : this.speed1;
+			this.dist2 -= this.dist2 < this.min2 ? 0 : this.speed2;
+			this.length1 = this.length1 < 0 ? 2 : this.length1;
+			this.length2 = this.length2 < -2 ? 2 : this.length2;
+			this.rad1 += this.chance1;
+			this.rad2 += this.chance2;
+			var temp = positionFromRad(this.rad1, this.length1, this.base);
+			this.current = positionFromRad(this.rad2, this.length2, temp);
+		}
+		//
+		this.render = function(ctx) {
+			ctx.putImageData(fill, this.current.x, this.current.y);
+		}
+
+		return this;
+	}
+// };
+
+
+
+
+
+
+
+

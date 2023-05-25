@@ -996,3 +996,13 @@ body {
 }
 
 /*Output Css*/
+
+/* #canvas{
+  width: 100%;
+  height: 100px;
+} */
+
+#showTime{
+  width: 1200px;
+  height: 800px;
+}

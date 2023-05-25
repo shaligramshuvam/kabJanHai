@@ -1,18 +1,10 @@
-// var canvas = document.getElementById('canvas');
-// var input = document.getElementById('input');
-// var inputData = document.getElementById('input').value;
-// var ctx = canvas.getContext('2d');
-// var array = [];
-// var chars = '';
+var canvas = document.getElementById('canvas');
+var input = document.getElementById('input');
+var ctx = canvas.getContext('2d');
+var array = [];
+var chars = '';
 //
-function Submit() {
-    var canvas = document.getElementById('canvas');
-    var input = document.getElementById('input');
-    var inputData = document.getElementById('input').value;
-    var ctx = canvas.getContext('2d');
-    var array = [];
-    var chars = '';
-    console.log(inputData);
+// window.onload = function () {
 	var main = document.getElementById('page-main');
 	var temp = document.createElement('canvas');
 	var buffer = temp.getContext('2d');
@@ -37,6 +29,8 @@ function Submit() {
 			point.update();
 		});
 	}
+
+
 	//
 	function render() {
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -46,17 +40,18 @@ function Submit() {
 			point.render(ctx);
 		});
 	}
-	//
-	inputData.onkeyup = function(e) {
+
+	function handleSubmit(){
 		array = [];
-		chars = inputData.value.trim();
+		chars = input.value.trim();
+		// char = value.trim --> value ko trim krne kai lyea
 		for (var i = chars.length - 1; i >= 0; i--) {
 			var char = chars[i];
 			var pos = chars.length - i;
 			textToImage(char, pos, chars.length);
 		}
-	};
-
+	}
+	
 	//
 	function textToImage(key, pos, total) {
 		buffer.clearRect(0, 0, 40, 40);
@@ -121,5 +116,6 @@ function Submit() {
 
 		return this;
 	}
-};
+// };
+
 

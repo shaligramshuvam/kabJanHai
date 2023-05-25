@@ -4,7 +4,7 @@ function GetTime() {
     //In Hours
     var inTime = document.getElementById('inTime').value;
     let [hours, mins] = inTime.split(":");
-    let inHours = hours;
+    let inHours = hours-12;
     let inMinutes = mins;
     let expectedOutHours = parseInt(inHours) + 8;
     let expectedOutMinutes = parseInt(inMinutes) + 30;
